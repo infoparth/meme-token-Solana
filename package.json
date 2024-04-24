@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ledgerhq/errors": "^6.16.4",
+    "@ledgerhq/errors": "^6.16.3",
     "@ledgerhq/hw-transport": "^6.30.6",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
