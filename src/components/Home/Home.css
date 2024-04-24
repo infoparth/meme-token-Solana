@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
+.bone-input-container {
+  display: flex;
+  justify-content: center; /* Align items horizontally */
+  align-items: center; /* Align items vertically */
+  width: fit-content; /* Adjust width as needed */
+  height: fit-content; /* Adjust height as needed */
+  background-image: url("../../assets/dog-bone.png"); /* Set bone image as background */
+  background-size: cover; /* Scale image to cover container */
+  background-position: center; /* Center image in container */
+  padding: 10px; /* Add padding for better input placement */
+}
+
+.transparent-input:focus {
+  outline: 1px solid #ccc; /* Add outline on focus for better UX */
+}
+
+/* Optional: Remove default cursor for a cleaner look */
+.transparent-input {
+  cursor: default;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../../assets/bone.png");
+  background-size: cover; /* Scale image to cover container */
+  background-position: center;
+}
+
+.input-container-outer {
+  position: relative;
+  width: 350px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  background-image: url("path/to/background-image.jpg");
+  background-size: cover;
+}
+
+.input-container-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%; /* Adjust width as needed */
+  max-width: 300px; /* Adjust max-width as needed */
+  text-align: center;
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 200;
+  font-style: normal;
+}
