@@ -70,7 +70,10 @@ function Home() {
 
         setIsLoading(false);
 
-        toast({ title: "Token sent successfully!" });
+        toast({
+          title: "Token sent successfully!",
+          description: `Tx signature ${signature}`,
+        });
       } else {
         setIsLoading(false);
         toast({ title: "Amount or Public Key not Found!" });
