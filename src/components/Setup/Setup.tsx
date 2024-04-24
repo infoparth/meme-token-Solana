@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo, ReactNode } from "react";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -15,15 +15,15 @@ import { clusterApiUrl } from "@solana/web3.js";
 
 // Default styles that can be overridden by your app
 
-export const WalletConnectProvider: FC = ({ children }) => {
+export const WalletConnectProvider: FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
   const network = WalletAdapterNetwork.Mainnet;
 
   // You can also provide a custom RPC endpoint.
   const endpoint = useMemo(() => {
-    if (network === WalletAdapterNetwork.Devnet)
-      return "https://devnet.helius-rpc.com/?api-key=86f4576b-580e-4561-ba28-4ee23271774b";
-    else if (network === "mainnet-beta")
+    if (network === "mainnet-beta")
       return "https://mainnet.helius-rpc.com/?api-key=86f4576b-580e-4561-ba28-4ee23271774b";
 
     return clusterApiUrl(network);
