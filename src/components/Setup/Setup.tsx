@@ -21,10 +21,11 @@ export const WalletConnectProvider: FC<{ children: ReactNode }> = ({
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
   const network = WalletAdapterNetwork.Mainnet;
 
+  const rpcUrl = process.env.VITE_MAINNET_RPC_URL;
+
   // You can also provide a custom RPC endpoint.
   const endpoint = useMemo(() => {
-    if (network === "mainnet-beta")
-      return "https://mainnet.helius-rpc.com/?api-key=86f4576b-580e-4561-ba28-4ee23271774b";
+    if (network === "mainnet-beta") return rpcUrl;
 
     return clusterApiUrl(network);
   }, [network]);
