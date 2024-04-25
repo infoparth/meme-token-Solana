@@ -39,7 +39,7 @@ function Home() {
     if (userBalance === 0) {
       toast({
         variant: "destructive",
-        title: "You don't have enough tokens",
+        title: "You don't have enough SOL Balance",
       });
       return;
     }
