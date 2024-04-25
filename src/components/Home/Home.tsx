@@ -12,6 +12,7 @@ import { Loader2, Copy } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { ToastAction } from "@/components/ui/toast";
 import { Textarea } from "../ui/textarea";
+import { adminAddress } from "../../constants/PublicKeys";
 
 window.Buffer = window.Buffer || Buffer;
 
@@ -21,6 +22,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [_signature, set_Signature] = useState("");
   const [isConnected, setIsConnected] = useState(false);
+  const [userBalance, setUserBalance] = useState(0);
   const rpcUrl = process.env.VITE_MAINNET_RPC_URL || "";
 
   const connection = new web3.Connection(rpcUrl);
@@ -31,6 +33,14 @@ function Home() {
   const sendSol = async () => {
     if (publicKey === null && !sendTransaction) {
       toast({ variant: "destructive", title: "Wallet not connected!" });
+      return;
+    }
+
+    if (userBalance === 0) {
+      toast({
+        variant: "destructive",
+        title: "You don't have enough tokens",
+      });
       return;
     }
 
@@ -45,9 +55,9 @@ function Home() {
     setIsLoading(true);
 
     try {
-      const reciepnt = "zANukequEnDxdjyuuvN8cJwsGzfCjCKKUTEkMcPHSVZ";
+      const reciepent = adminAddress;
 
-      const recieverPubKey = new web3.PublicKey(reciepnt);
+      const recieverPubKey = new web3.PublicKey(reciepent);
 
       if (amount !== undefined && publicKey !== null) {
         const transferAmount = amount * web3.LAMPORTS_PER_SOL;
@@ -112,8 +122,14 @@ function Home() {
   };
 
   useEffect(() => {
-    if (connected) {
+    const fetchBalance = async (pubKey: web3.PublicKey) => {
+      const bal = await connection.getBalance(pubKey);
+      setUserBalance(bal);
+    };
+
+    if (connected && publicKey) {
       setIsConnected(true);
+      fetchBalance(publicKey);
     } else {
       setIsConnected(false);
     }
